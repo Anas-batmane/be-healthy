@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Be Healthy</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <style>
+      .pro-footer {
+        background-color: #111111;
+        color: #ffffff;
+        border-top: 1px solid #333;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 1000;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .copyright-text {
+        font-size: 0.85rem;
+        color: #999;
+      }
+
+      .social-links a {
+        color: #999;
+        margin: 0 12px;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .social-links a:hover {
+        color: #27ae60;
+        transform: translateY(-3px);
+        display: inline-block;
+      }
+
+      .footer-nav a {
+        color: #999;
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-left: 15px;
+        transition: 0.3s;
+      }
+
+      .footer-nav a:hover {
+        color: #ffffff;
+      }
+
+      @media (max-width: 768px) {
+        .pro-footer {
+          position: relative;
+          padding: 20px 0;
+        }
+        body {
+          padding-bottom: 0;
+        }
+      }
+      .dot {
+        height: 8px;
+        width: 8px;
+        background-color: #27ae60;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 5px;
+      }
+
+      body {
+        padding-bottom: 40px;
+        font-family: "Poppins", sans-serif;
+        padding-top: 80px;
+        background-color: #f4f7f6;
+        padding-bottom: 70px;
+      }
+      .card {
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
+      .card:hover {
+        transform: scale(1.05);
+      }
+      .navbar-brand {
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top shadow">
+      <div class="container">
+        <img src="image/logo.png" alt="logo" width="70" height="70" class="rounded"/>
+        <a class="navbar-brand fw-bold" href="#">🥗 Be Healthy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="calories.html">Calculate de calories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="conseils.html">Des conseils</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="container my-5">
+      <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Bienvenue chez Be Healthy</h1>
+        <p class="lead text-muted">Votre santé est votre priorité. Choisissez un service :</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card h-100 shadow-sm border-0">
+            <img src="image/card1.png" class="card-img-top" alt="Calories"/>
+            <div class="card-body text-center">
+              <h3 class="card-title fw-bold text-success">Calculateur de Calories</h3>
+              <p class="card-text text-muted">Estimez vos besoins caloriques journaliers en fonction de votre activité physique.</p>
+              <a href="calories.html" class="btn btn-success px-4 py-2">Ouvrir le calculateur</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100 shadow-sm border-0">
+            <img src="image/Card2.png" class="card-img-top" alt="Conseils"/>
+            <div class="card-body text-center">
+              <h3 class="card-title fw-bold text-success">Conseils Santé</h3>
+              <p class="card-text text-muted">Découvrez des astuces et des conseils pour maintenir une vie saine et équilibrée.</p>
+              <a href="conseils.html" class="btn btn-success px-4 py-2">Voir les conseils</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="pro-footer">
+      <div class="container">
+        <div class="row align-items-center py-3">
+          <div class="col-md-4 text-center text-md-start mb-2 mb-md-0">
+            <span class="copyright-text">© 2026 <span class="text-success fw-bold">Be Healthy</span>. All rights reserved.</span>
+          </div>
+          <div class="col-md-4 text-center mb-2 mb-md-0">
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="col-md-4 text-center text-md-end">
+            <div class="footer-nav">
+              <a href="index.html">Accueil</a>
+              <a href="contact.html">Contact</a>
+              <a href="#">Privacy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

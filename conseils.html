@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conseiller Santé Complet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <style>
+      body {
+        background: #f4f7f6;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+        padding-bottom: 70px;
+      }
+      .card {
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
+      .card:hover {
+        transform: scale(1.05);
+      }
+      .header-main {
+        background: #27ae60;
+        color: white;
+        padding: 25px;
+        border-radius: 20px 20px 0 0;
+        text-align: center;
+      }
+      .btn-analyse {
+        background: #27ae60;
+        color: white;
+        border-radius: 12px;
+        padding: 15px;
+        font-weight: bold;
+        width: 100%;
+        border: none;
+        font-size: 1.1rem;
+      }
+      .btn-analyse:hover {
+        background: #219150;
+        transform: translateY(-2px);
+      }
+      #result-card {
+        display: none;
+      }
+      .meal-card {
+        background: #fff;
+        border-left: 5px solid #27ae60;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      .meal-time {
+        font-weight: bold;
+        color: #27ae60;
+        display: block;
+        margin-bottom: 5px;
+      }
+      .disease-tag {
+        background: #e74c3c;
+        color: white;
+        padding: 2px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+      }
+      .pro-footer {
+        background-color: #111111;
+        color: #ffffff;
+        border-top: 1px solid #333;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 1000;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .copyright-text {
+        font-size: 0.85rem;
+        color: #999;
+      }
+
+      .social-links a {
+        color: #999;
+        margin: 0 12px;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .social-links a:hover {
+        color: #27ae60;
+        transform: translateY(-3px);
+        display: inline-block;
+      }
+
+      .footer-nav a {
+        color: #999;
+        text-decoration: none;
+        font-size: 0.85rem;
+        margin-left: 15px;
+        transition: 0.3s;
+      }
+
+      .footer-nav a:hover {
+        color: #ffffff;
+      }
+
+      @media (max-width: 768px) {
+        .pro-footer {
+          position: relative;
+          padding: 20px 0;
+        }
+        body {
+          padding-bottom: 0;
+        }
+      }
+      .navbar-brand {
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top shadow">
+      <div class="container">
+        <img src="image/logo.png" alt="logo" width="70" height="70" class="rounded"/>
+        <a class="navbar-brand fw-bold" href="#">🥗 Be Healthy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="calories.html">Calculateur de calories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="conseils.html">Conseils</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="container my-5">
+      <div class="container mb-5">
+        <div class="row justify-content-center">
+          <div class="col-md-10 col-lg-7">
+            <div class="card" id="input-card">
+              <div class="header-main">
+                <h2>🩺 Système de Soins Nutritionnels</h2>
+                <p class="mb-0">Entrez vos informations pour un programme alimentaire complet</p>
+              </div>
+              <div class="card-body p-4">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Sexe</label>
+                    <select id="sexe" class="form-select">
+                      <option>Homme</option>
+                      <option>Femme</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Âge</label>
+                    <input type="number" id="age" class="form-control" placeholder="Ex: 30"/>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Poids (kg)</label>
+                    <input type="number" id="weight" class="form-control" placeholder="75"/>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Taille (cm)</label>
+                    <input type="number" id="height" class="form-control" placeholder="175"/>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label fw-bold">Choisissez votre état de santé (ou le plus proche):</label>
+                    <select id="maladie" class="form-select">
+                      <option value="sante">Bonne santé (Normal)</option>
+                      <option value="diabete">Diabète</option>
+                      <option value="tension">Hypertension artérielle</option>
+                      <option value="cholesterol">Cholestérol</option>
+                      <option value="anemie">Anémie</option>
+                      <option value="colon">Colon Irritable</option>
+                      <option value="acidite">Reflux Gastrique</option>
+                      <option value="thyroide">Thyroïde</option>
+                      <option value="articulation">Douleurs articulaires (Arthrose)</option>
+                      <option value="constipation">Constipation chronique</option>
+                      <option value="migraine">Migraine</option>
+                    </select>
+                  </div>
+                </div>
+                <button class="btn-analyse mt-4" onclick="analyserNutrition()">Analyser et extraire le programme</button>
+              </div>
+            </div>
+            <div class="card" id="result-card">
+              <div class="header-main" style="background: #27ae60">
+                <h2>📋 Votre Programme Nutritionnel Personnalisé</h2>
+                <span id="disease-label" class="disease-tag"></span>
+              </div>
+              <div class="card-body p-4">
+                <div id="bmi-badge" class="text-center mb-4"></div>
+                <h5 class="fw-bold mb-3">🍴 Distribution des repas quotidiens :</h5>
+                <div id="diet-container"></div>
+                <div class="alert alert-warning mt-4 small">⚠️ Note : Ce programme est indicatif, il est toujours préférable de consulter votre médecin traitant.</div>
+                <button class="btn btn-outline-dark w-100" onclick="location.reload()"> Retour et modification des données</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      function analyserNutrition() {
+        const w = document.getElementById("weight").value;
+        const h = document.getElementById("height").value;
+        const m = document.getElementById("maladie").value;
+
+        if (!w || !h) {
+          alert("Veuillez entrer le poids et la taille !");
+          return;
+        }
+
+        const bmi = (w / (h / 100) ** 2).toFixed(1);
+        let color = bmi < 25 ? "success" : "danger";
+        document.getElementById("bmi-badge").innerHTML =
+          `<span class="badge bg-${color} fs-6">Votre IMC : ${bmi}</span>`;
+        document.getElementById("disease-label").innerText =
+          document.getElementById("maladie").options[
+            document.getElementById("maladie").selectedIndex
+          ].text;
+
+        const programs = {
+          sante: [
+            "Avoine aux fruits et noix",
+            "Poulet grillé + Riz + Salade verte",
+            "Yaourt nature + Pomme",
+            "Soupe de légumes légère + Morceau de fromage",
+          ],
+          diabete: [
+            "Pain d'orge + Œuf bouilli + Huile d'olive",
+            "Poisson au four + Salade de lentilles + Légumes à feuilles",
+            "Une poignée d'amandes crues",
+            "Soupe de légumes (sans carottes cuites) + Yaourt nature sans sucre",
+          ],
+          tension: [
+            "Soupe d'orge sans sel + Dattes",
+            "Blanc de poulet à la vapeur + Patate douce + Salade",
+            "Banane ou morceau de pastèque",
+            "Salade de fruits ou un verre de lait fermenté",
+          ],
+          cholesterol: [
+            "Jus vert + Toast complet",
+            "Sardines grillées + Salade de quinoa",
+            "Pomme ou Poire",
+            "Soupe d'avoine à l'eau et aux légumes",
+          ],
+          anemie: [
+            "Œuf au plat + Mélasse noire + Jus d'orange",
+            "Viande rouge ou Foie + Salade de brocoli",
+            "Figues séchées et raisins secs",
+            "Salade de légumineuses (Pois chiches/Lentilles) + Tomates",
+          ],
+          colon: [
+            "Pain sans mie + Fromage léger",
+            "Riz blanc vapeur + Carottes bouillies + Poulet",
+            "Tisane de camomille + Biscuits secs",
+            "Purée de pommes de terre + Yaourt",
+          ],
+          acidite: [
+            "Banane + Pain grillé",
+            "Poulet grillé sans épices fortes + Riz",
+            "Concombre épluché",
+            "Yaourt nature ou Lait froid",
+          ],
+          thyroide: [
+            "Œuf + Avocat + Toast",
+            "Saumon ou fruits de mer + Légumes",
+            "Noix du Brésil (2 pièces)",
+            "Salade de thon aux légumes",
+          ],
+          articulation: [
+            "Jus de baies ou fruits rouges + Noix",
+            "Poisson riche en Oméga 3 + Légumes sautés",
+            "Morceau de chocolat noir",
+            "Soupe de courge rouge + Graines de lin",
+          ],
+          constipation: [
+            "Pain complet + Huile d'olive + Figues",
+            "Tagine de légumes riche en fibres + Pain complet",
+            "Pruneaux séchés ou Kiwi",
+            "Grande salade verte + Soupe de légumes",
+          ],
+          migraine: [
+            "Lait à l'avoine + Amandes",
+            "Viande de dinde + Pommes de terre bouillies",
+            "Concombre ou beaucoup d'eau",
+            "Soupe de légumes blancs (sans tomates ni épices fortes)",
+          ],
+        };
+
+        const selected = programs[m];
+        const labels = ["Petit-déjeuner", "Déjeuner", "Collation", "Dîner"];
+
+        let html = "";
+        selected.forEach((meal, i) => {
+          html += `<div class="meal-card"><span class="meal-time">${labels[i]}</span>${meal}</div>`;
+        });
+
+        document.getElementById("diet-container").innerHTML = html;
+        document.getElementById("input-card").style.display = "none";
+        document.getElementById("result-card").style.display = "block";
+      }
+    </script>
+    <footer class="pro-footer">
+      <div class="container">
+        <div class="row align-items-center py-3">
+          <div class="col-md-4 text-center text-md-start mb-2 mb-md-0">
+            <span class="copyright-text">© 2026 <span class="text-success fw-bold">Be Healthy</span>. All rights reserved.</span>
+          </div>
+          <div class="col-md-4 text-center mb-2 mb-md-0">
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="col-md-4 text-center text-md-end">
+            <div class="footer-nav">
+              <a href="index.html">Accueil</a>
+              <a href="contact.html">Contact</a>
+              <a href="#">Privacy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
